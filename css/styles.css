@@ -104,7 +104,7 @@ body {
     line-height: calc(24/16);
     letter-spacing: 0.02em;  
     color: var(--color-navy-blue-modal);
-    transition: color --transition;
+    transition: color var(--transition);
  }
  .header-item:hover,
  .header-item:focus{
@@ -122,7 +122,7 @@ body {
   color: var(--color-slate);   
   line-height: calc(24/16);
   letter-spacing: 0.02em;  
-  transition: color --transition; 
+  transition: color var(--transition); 
  } 
  .contact-mail:hover,
  .contact-mail:focus,
@@ -154,8 +154,7 @@ body {
         line-height: calc(60/56);
         text-align: center;
         letter-spacing: 0.02em;      
-        color:var(--color-whit) ;
-      
+        color:var(--color-whit) ;      
      }
   
      .hero-btn { 
@@ -176,7 +175,7 @@ body {
       letter-spacing: 0.04em;      
       color: var(--color-whit);
       cursor: pointer;
-      transition: background-color --transition;
+      transition: background-color var(--transition);
      }
         .hero-btn:hover,
         .hero-btn:focus{
@@ -271,6 +270,7 @@ body {
       border-radius: 50%;
       background: var(--color-iris);
       fill: var(--color-whit);
+      transition:background var(--transition) ;
      }
      .sotial-link.team:hover,
      .sotial-link.team:focus
@@ -318,6 +318,7 @@ body {
      }
      .customers-icon{
       fill: var(--color-light-slate);
+      transition: fill var(--transition);
      }
      .customer-item{
            
@@ -330,6 +331,7 @@ body {
          border-radius: 4px;
          width: 168px;
          height: 88px;
+         transition: border-color var(--transition);
      }
     .customers-link:hover .customers-icon,
     .customers-link:focus .customers-icon {      
@@ -372,7 +374,9 @@ align-items: baseline;
 gap: 120px;
 }
 .footer .sotial-link {
-background: rgba(255, 255, 255, 0.1);}
+background: rgba(255, 255, 255, 0.1);
+transition: background var(--transition);
+}
 .footer .sotial-link:hover,
 .footer .sotial-link:focus {
    background: var(--color-green);
@@ -426,13 +430,14 @@ background: rgba(255, 255, 255, 0.1);}
     line-height: calc(24/16);       
     letter-spacing: 0.04em;  
     color: var(--color-iris);
+    transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 .portfolio-btn:hover,
 .portfolio-btn:focus{
   background: var(--color-ocean);
   color: var(--color-whit);
   border-color: var(--color-ocean);
-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 /* ===section=== */
 .section-list{
@@ -442,12 +447,16 @@ box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px
    column-gap: 24px;
 }
 .section-item {   
-   flex-basis: calc((100% - 2 * 24px)/ 3);   
-}
-.section-item:hover
-{
-   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+   flex-basis: calc((100% - 2 * 24px)/ 3); 
    cursor: pointer;
+   transition: box-shadow var(--transition);
+}
+.section-item:hover {
+   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);  
+   
+}
+.section-item:hover .overlay{
+transform: translate(0, 0);
 }
 
 .section-img {
@@ -468,6 +477,27 @@ box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px
       letter-spacing: 0.02em;
       color: var(--color-grey);        
 }
+.card-wrapper{
+   position: relative;
+   overflow: hidden;
+}
+.overlay{
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   padding: 40px 32px ;
+   overflow: auto;
+   transform: translate(0, 100%);
+   transition: transform var(--transition);
+   
+   background: var(--color-iris);   
+      font-weight: 400;
+      font-size: 16px;
+      line-height: calc(24/16);      
+      letter-spacing: 0.02em;   
+      color: var(--color-cloud);
+}
 
 /* ======Modal window */
 .backdrop {
@@ -478,17 +508,27 @@ box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px
    width: 100%;
    height: 100%;
    background-color: rgba(46, 47, 66, 0.4);
+   opacity: 1;
+   transition: opacity var(--transition);
 }
 
+.backdrop.is-hidden .modal{
+   transform: translate(-50%, -50%) scale (0);
+}
 .modal {
    position: absolute;   
-   top: calc(50% - 204px);
-   left: calc(50% - 228px);
+   /* top: calc(50% - 204px);
+   left: calc(50% - 228px); */
+   top: 50%;
+   left: 50%;
+   /* transform: translate(-50%, -50%); */
    width: 408px;
    min-height: 456px;
    background: #FCFCFC;
    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
    border-radius: 4px;
+   transform: translate(-50%, -50%) scale(1);
+   transition: transform var(--transition);
 }
 
 .modal-btn {
@@ -513,7 +553,7 @@ box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px
    pointer-events: none;
 }
 .modal-ikon {
-   
+transition: fill var(--transition);   
 }
 .modal-btn:hover .modal-ikon,
 .modal-btn:focus .modal-ikon
